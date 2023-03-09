@@ -33,9 +33,14 @@ public class ClubController {
         clubService.addToClubs();
     }
 
-    @PutMapping("/{id}")
-    public void updateClubName(@PathVariable String id, @RequestBody String name){
+    @PutMapping("/{id}/{name}")
+    public void updateClubName(@PathVariable int id, @PathVariable String name){
+        clubService.updateName(id, name);
+    }
 
+    @DeleteMapping("/{id}")
+    public void deleteClubById(@PathVariable int id){
+        clubService.deleteClub(id);
     }
 
 }
