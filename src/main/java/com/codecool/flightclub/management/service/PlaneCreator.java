@@ -2,22 +2,24 @@ package com.codecool.flightclub.management.service;
 
 import com.codecool.flightclub.management.model.Plane;
 import com.codecool.flightclub.management.model.PlaneType;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class PlaneCreator {
 
+    private List<Plane> planeList = new ArrayList<>();
 
-    public PlaneCreator() {
+    public List<Plane> addToPlaneList() {
+        planeList.add(new Plane("SAA211", PlaneType.FALKE, BigDecimal.ONE, LocalDate.now()));
+        planeList.add(new Plane("DAW211", PlaneType.CESSNA152, BigDecimal.TEN, LocalDate.now()));
+        return planeList;
     }
 
-    public Plane planeCreator(){
-        return new Plane("sda", PlaneType.CESSNA152, BigDecimal.ONE, LocalDate.now());
+    public PlaneCreator() {
     }
 
 }
