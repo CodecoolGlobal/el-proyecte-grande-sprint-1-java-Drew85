@@ -24,8 +24,8 @@ public class ClubController {
     }
 
     @GetMapping("/{id}")
-    public Club getClub(@PathVariable String id){
-        return clubService.getClub(Integer.parseInt(id));
+    public Club getClub(@PathVariable int id){
+        return clubService.getClub(id);
     }
 
     @PostMapping
