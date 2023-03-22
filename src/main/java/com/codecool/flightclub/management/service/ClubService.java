@@ -13,7 +13,6 @@ import java.util.Objects;
 @Service
 public class ClubService {
 
-
     private List<Club> clubs;
 
     @Autowired
@@ -22,8 +21,8 @@ public class ClubService {
     }
 
     public void addToClubs(){
-        clubs.add(new Club(BigDecimal.ONE, "Pesti-Repülő-Klub", null, null,1));
-        clubs.add(new Club(BigDecimal.TEN,"Dél-Pesti-Klub", null,null,2));
+        clubs.add(new Club(BigDecimal.valueOf(4200), "Pesti-Repülő-Klub", null, null,1));
+        clubs.add(new Club(BigDecimal.valueOf(6310),"Dél-Pesti-Klub", null,null,2));
     }
 
 
@@ -51,4 +50,5 @@ public class ClubService {
     public void deleteClub(int id) {
         clubs.removeIf(club -> club.getId() == id);
     }
+
 }
