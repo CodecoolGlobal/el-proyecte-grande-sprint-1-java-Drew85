@@ -3,7 +3,6 @@ package com.codecool.flightclub.management.model;
 public class User {
     private String name;
     private int id;
-
     private Club club;
 
     public User(String name, int id, Club club) {
