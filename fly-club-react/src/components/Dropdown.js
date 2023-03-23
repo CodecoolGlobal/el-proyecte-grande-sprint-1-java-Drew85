@@ -28,9 +28,9 @@ export default function DropdownList() {
         <div>
             <select value={club} onChange={e => setClub(e.target.value)}>
                 <option value="">Select a club</option>
-                <option value="Option 1">Option 1</option>
-                <option value="Option 2">Option 2</option>
-                <option value="Option 3">Option 3</option>
+                <option value="Option 1">Budaörs LH</option>
+                <option value="Option 2">Farkashegy LHFH</option>
+                <option value="Option 3">Esztergom</option>
             </select>
             <Button onClick={handleSave} size="sm">Small</Button>
         </div>
