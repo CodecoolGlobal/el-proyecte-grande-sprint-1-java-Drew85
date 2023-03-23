@@ -4,26 +4,26 @@ import com.codecool.flightclub.management.model.Club;
 import com.codecool.flightclub.management.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class UserService {
+
     private List<User> users;
 
+    @Autowired
     public UserService(List<User> users) {
-        this.users = new ArrayList<>();
+        this.users = users;
     }
 
     @Autowired
-    public void AddNewMember() {
-       users.add(new User("Béla", 4, null));
+    public List<User> getUsers() {
+        return users;
     }
 
-    public User getUsers(int id) {
+    @Autowired
+    public User getUser(int id) {
         for (User user : users) {
             if (user.getId() == id){
                 return user;
@@ -31,12 +31,25 @@ public class UserService {
         }
         return null;
     }
+    
+    @Autowired
+    public void AddNewUser(String name) {
+        users.add(new User(name, users.size() == 0 ? 0 : users.get(users.size() - 1).getId() + 1));
+    }
 
+    @Autowired
+    public void editUser(int id, String newName) {
+        getUser(id).setName(newName);
+    }
+
+    @Autowired
+    public void deleteUser(int id) {
+        users.remove(getUser(id));
+    }
+    
+    @Autowired
     public void addClubToUser(Club club, User user){
         user.setClub(club);
     }
-
-    public List<User> getUsers() {
-        return users;
-    }
+    
 }

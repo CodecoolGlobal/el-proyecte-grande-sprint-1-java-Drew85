@@ -1,10 +1,8 @@
 package com.codecool.flightclub.management.model;
 
-import java.util.UUID;
-
 public class User {
     private String name;
-    private int id = 0;
+    private int id;
 
     private Club club;
 
