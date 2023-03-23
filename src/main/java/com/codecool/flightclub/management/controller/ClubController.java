@@ -10,8 +10,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/club")
 public class ClubController {
-    private ClubService clubService;
 
+    private ClubService clubService;
 
     @Autowired
     public ClubController(ClubService clubService) {
