@@ -1,5 +1,6 @@
 package com.codecool.flightclub.management.service;
 
+import com.codecool.flightclub.management.model.Club;
 import com.codecool.flightclub.management.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class UserService {
 
     @Autowired
     public void AddNewMember() {
-       users.add(new User("Béla", 4));
+       users.add(new User("Béla", 4, null));
     }
 
     public User getUsers(int id) {
@@ -29,6 +30,10 @@ public class UserService {
             }
         }
         return null;
+    }
+
+    public void addClubToUser(Club club, User user){
+        user.setClub(club);
     }
 
     public List<User> getUsers() {

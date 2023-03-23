@@ -1,14 +1,18 @@
 package com.codecool.flightclub.management.controller;
 
+import com.codecool.flightclub.management.model.Club;
 import com.codecool.flightclub.management.model.User;
 import com.codecool.flightclub.management.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
+
 public class UserController {
     private UserService userService;
 
@@ -30,6 +34,13 @@ public class UserController {
     @PostMapping
     public void AddUser(){
         userService.AddNewMember();
+    }
+
+    @PostMapping("/add-club")
+    public ResponseEntity<Void> addClubToUser(@RequestBody Club club) {
+        User user = new User("Béla", 3 , null);
+        userService.addClubToUser(club, user);
+        return ResponseEntity.ok().build();
     }
 
 
