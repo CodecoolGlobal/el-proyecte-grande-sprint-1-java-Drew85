@@ -1,17 +1,17 @@
 package com.codecool.flightclub.management.model;
 
-public class User {
+public class Client {
     private String name;
     private int id;
     private Club club;
 
-    public User(String name, int id, Club club) {
+    public Client(String name, int id, Club club) {
         this.name = name;
         this.id = id;
         this.club = club;
     }
 
-    public User() {
+    public Client() {
     }
 
     public String getName() {
