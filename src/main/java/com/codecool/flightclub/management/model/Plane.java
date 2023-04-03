@@ -1,27 +1,23 @@
 package com.codecool.flightclub.management.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Plane {
+    @Id
     private String id;
     private PlaneType planeType;
     private BigDecimal flightCost;
     private LocalDate onAir;
 
-
-    public Plane(String id, PlaneType planeType, BigDecimal flightCost, LocalDate onAir) {
-        this.id = id;
-        this.planeType = planeType;
-        this.flightCost = flightCost;
-        this.onAir = onAir;
-    }
 
     public String getId() {
         return id;

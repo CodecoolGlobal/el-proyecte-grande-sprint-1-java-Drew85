@@ -1,8 +1,15 @@
 package com.codecool.flightclub.management.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class Client {
     private String name;
+    @Id
     private int id;
+    @ManyToOne
     private Club club;
 
     public Client(String name, int id, Club club) {

@@ -1,14 +1,22 @@
 package com.codecool.flightclub.management.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
 import java.math.BigDecimal;
 import java.util.Set;
 
+@Entity
 public class Club {
 
+    @Id
     private int id;
     private BigDecimal price;
     private String name;
+    @OneToMany
     private Set<Client> clients;
+    @OneToMany
     private Set<Plane> planes;
 
     public Club(BigDecimal price, String name, Set<Client> clients, Set<Plane> planes, int id) {
