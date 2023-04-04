@@ -29,11 +29,11 @@ public class ClubService {
     }
 
     public Club getClub(int id) {
-        return clubRepo.getById(id);
+        return clubRepo.findById(id).get();
     }
 
     public void updateName(int id, String name) {
-        clubRepo.getById(id).setName(name);
+        clubRepo.findById(id).get().setName(name);
     }
 
     public void deleteClub(int id) {
