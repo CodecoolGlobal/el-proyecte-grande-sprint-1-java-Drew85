@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Button from "@mui/material/Button";
+import axios from "axios";
 
 export default function DropdownList() {
     const [club, setClub] = useState('');
+    const [clubs, setClubs] = useState([]);
 
     function handleSave() {
         fetch('/user/add-club', {
@@ -24,13 +26,22 @@ export default function DropdownList() {
             });
     }
 
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await axios(
+                `/club`);
+            setClubs(result.data);
+        };
+        fetchData();
+    }, []);
+
     return (
         <div>
             <select value={club} onChange={e => setClub(e.target.value)}>
                 <option value="">Choose a club</option>
-                <option value="Option 1">Budaörs LHBS</option>
-                <option value="Option 2">Farkashegy LHFH</option>
-                <option value="Option 3">Esztergom LHEM</option>
+                {clubs.map(cclub => (
+                    <option value={cclub.id}>{cclub.name}</option>
+                ))}
             </select>
             <Button onClick={handleSave} size="sm">Select</Button>
         </div>
