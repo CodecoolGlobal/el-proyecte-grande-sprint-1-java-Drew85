@@ -3,11 +3,17 @@ package com.codecool.flightclub.management.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Club {
 
     @Id
@@ -25,10 +31,6 @@ public class Club {
         this.clients = clients;
         this.planes = planes;
         this.id = id;
-    }
-
-    public Club() {
-
     }
 
     public BigDecimal getPrice() {

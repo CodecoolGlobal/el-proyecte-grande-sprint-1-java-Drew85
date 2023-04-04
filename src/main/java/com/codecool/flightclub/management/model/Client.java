@@ -3,23 +3,20 @@ package com.codecool.flightclub.management.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Client {
     private String name;
     @Id
     private int id;
     @ManyToOne
     private Club club;
-
-    public Client(String name, int id, Club club) {
-        this.name = name;
-        this.id = id;
-        this.club = club;
-    }
-
-    public Client() {
-    }
 
     public String getName() {
         return name;
