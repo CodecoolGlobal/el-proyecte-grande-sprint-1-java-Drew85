@@ -25,35 +25,12 @@ public class Club {
     @OneToMany
     private Set<Plane> planes;
 
-    public Club(BigDecimal price, String name, Set<Client> clients, Set<Plane> planes, int id) {
+    public Club(BigDecimal price, String name, Set<Client> clients, Set<Plane> planes, Integer id) {
         this.price = price;
         this.name = name;
         this.clients = clients;
         this.planes = planes;
         this.id = id;
     }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Set<Client> getUsers() {
-        return clients;
-    }
-
-    public Set<Plane> getPlanes() {
-        return planes;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    
 }

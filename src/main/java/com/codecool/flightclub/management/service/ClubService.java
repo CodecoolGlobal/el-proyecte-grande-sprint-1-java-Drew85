@@ -17,7 +17,8 @@ public class ClubService {
         this.clubRepo = clubRepo;
     }
 
-    public void addToClubs(){
+    public void addToClubs(Club club){
+        clubRepo.save(club);
         // clubs.add(new Club(BigDecimal.valueOf(4200), "Pesti-Repülő-Klub", null, null,1));
         // clubs.add(new Club(BigDecimal.valueOf(6310),"Dél-Pesti-Klub", null,null,2));
     }
