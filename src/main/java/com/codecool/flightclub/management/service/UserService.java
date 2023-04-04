@@ -1,7 +1,7 @@
 package com.codecool.flightclub.management.service;
 
 import com.codecool.flightclub.management.model.Club;
-import com.codecool.flightclub.management.model.User;
+import com.codecool.flightclub.management.model.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,28 +10,28 @@ import java.util.List;
 @Service
 public class UserService {
 
-    private List<User> users;
+    private List<Client> clients;
 
     @Autowired
-    public UserService(List<User> users) {
-        this.users = users;
+    public UserService(List<Client> clients) {
+        this.clients = clients;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<Client> getUsers() {
+        return clients;
     }
 
-    public User getUser(int id) {
-        for (User user : users) {
-            if (user.getId() == id){
-                return user;
+    public Client getUser(int id) {
+        for (Client client : clients) {
+            if (client.getId() == id){
+                return client;
             }
         }
         return null;
     }
 
     public void AddNewUser(String name) {
-        users.add(new User(name, users.size() == 0 ? 0 : users.get(users.size() - 1).getId() + 1, null));
+        clients.add(new Client(name, clients.size() == 0 ? 0 : clients.get(clients.size() - 1).getId() + 1, null));
     }
 
     public void editUser(int id, String newName) {
@@ -39,11 +39,11 @@ public class UserService {
     }
 
     public void deleteUser(int id) {
-        users.remove(getUser(id));
+        clients.remove(getUser(id));
     }
 
-    public void addClubToUser(Club club, User user){
-        user.setClub(club);
+    public void addClubToUser(Club club, Client client){
+        client.setClub(club);
     }
     
 }

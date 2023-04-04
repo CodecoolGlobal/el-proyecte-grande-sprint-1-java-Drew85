@@ -1,5 +1,9 @@
 package com.codecool.flightclub.management.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -9,7 +13,11 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 
+@Entity
+@Data
+@NoArgsConstructor
 public class Plane {
+    @Id
     private String id;
     private PlaneType planeType;
     private BigDecimal flightCost;
