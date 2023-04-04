@@ -17,7 +17,7 @@ import java.util.Set;
 public class Club {
 
     @Id
-    private int id;
+    private Integer id;
     private BigDecimal price;
     private String name;
     @OneToMany

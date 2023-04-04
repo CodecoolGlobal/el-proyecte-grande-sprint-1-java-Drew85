@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class Client {
     private String name;
     @Id
-    private int id;
+    private Integer id;
     @ManyToOne
     private Club club;
 
