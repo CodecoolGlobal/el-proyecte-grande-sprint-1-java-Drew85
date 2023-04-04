@@ -13,7 +13,7 @@ import java.util.Set;
 public class Club {
 
     @Id
-    private int id;
+    private Integer id;
     private BigDecimal price;
     private String name;
     @OneToMany
@@ -49,7 +49,7 @@ public class Club {
         return planes;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

@@ -1,5 +1,6 @@
 package com.codecool.flightclub.management.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -21,10 +23,10 @@ public class Plane {
     private String id;
     private PlaneType planeType;
     private BigDecimal flightCost;
-    private LocalDate onAir;
+    private LocalDateTime onAir;
 
 
-    public Plane(String id, PlaneType planeType, BigDecimal flightCost, LocalDate onAir) {
+    public Plane(String id, PlaneType planeType, BigDecimal flightCost, LocalDateTime onAir) {
         this.id = id;
         this.planeType = planeType;
         this.flightCost = flightCost;
@@ -55,11 +57,12 @@ public class Plane {
         this.flightCost = flightCost;
     }
 
-    public LocalDate getOnAir() {
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    public LocalDateTime getOnAir() {
         return onAir;
     }
 
-    public void setOnAir(LocalDate onAir) {
+    public void setOnAir(LocalDateTime onAir) {
         this.onAir = onAir;
     }
 }
