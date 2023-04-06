@@ -1,51 +1,26 @@
 package com.codecool.flightclub.management.model;
 
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.Set;
 
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Club {
 
+    @Id
     private int id;
     private BigDecimal price;
     private String name;
-    private Set<User> users;
+    @OneToMany
+    private Set<Client> users;
+    @OneToMany
     private Set<Plane> planes;
 
-    public Club(BigDecimal price, String name, Set<User> users, Set<Plane> planes, int id) {
-        this.price = price;
-        this.name = name;
-        this.users = users;
-        this.planes = planes;
-        this.id = id;
-    }
-
-    public Club() {
-
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public Set<Plane> getPlanes() {
-        return planes;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
