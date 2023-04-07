@@ -1,17 +1,12 @@
 package com.codecool.flightclub.management.model;
 
+import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -21,12 +16,13 @@ import java.time.LocalDateTime;
 public class Plane {
     @Id
     private String id;
+    @Enumerated(EnumType.STRING)
     private PlaneType planeType;
-    private BigDecimal flightCost;
+    private Integer flightCost;
     private LocalDateTime onAir;
 
 
-    public Plane(String id, PlaneType planeType, BigDecimal flightCost, LocalDateTime onAir) {
+    public Plane(String id, PlaneType planeType, Integer flightCost, LocalDateTime onAir) {
         this.id = id;
         this.planeType = planeType;
         this.flightCost = flightCost;
@@ -49,11 +45,11 @@ public class Plane {
         this.planeType = planeType;
     }
 
-    public BigDecimal getFlightCost() {
+    public Integer getFlightCost() {
         return flightCost;
     }
 
-    public void setFlightCost(BigDecimal flightCost) {
+    public void setFlightCost(Integer flightCost) {
         this.flightCost = flightCost;
     }
 
