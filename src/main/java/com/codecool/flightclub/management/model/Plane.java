@@ -1,27 +1,30 @@
 package com.codecool.flightclub.management.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
+import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Plane {
+    @Id
     private String id;
+//    @Enumerated(EnumType.STRING)
+    @ManyToOne
     private PlaneType planeType;
-    private BigDecimal flightCost;
-    private LocalDate onAir;
+    private Integer flightCost;
+    private LocalDateTime onAir;
 
 
-    public Plane(String id, PlaneType planeType, BigDecimal flightCost, LocalDate onAir) {
-        this.id = id;
-        this.planeType = planeType;
-        this.flightCost = flightCost;
-        this.onAir = onAir;
-    }
 
     public String getId() {
         return id;
@@ -39,19 +42,20 @@ public class Plane {
         this.planeType = planeType;
     }
 
-    public BigDecimal getFlightCost() {
+    public Integer getFlightCost() {
         return flightCost;
     }
 
-    public void setFlightCost(BigDecimal flightCost) {
+    public void setFlightCost(Integer flightCost) {
         this.flightCost = flightCost;
     }
 
-    public LocalDate getOnAir() {
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    public LocalDateTime getOnAir() {
         return onAir;
     }
 
-    public void setOnAir(LocalDate onAir) {
+    public void setOnAir(LocalDateTime onAir) {
         this.onAir = onAir;
     }
 }
