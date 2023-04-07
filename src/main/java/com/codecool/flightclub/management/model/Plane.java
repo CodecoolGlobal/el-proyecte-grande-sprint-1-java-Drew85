@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,21 +14,17 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Plane {
     @Id
     private String id;
-    @Enumerated(EnumType.STRING)
+//    @Enumerated(EnumType.STRING)
+    @ManyToOne
     private PlaneType planeType;
     private Integer flightCost;
     private LocalDateTime onAir;
 
 
-    public Plane(String id, PlaneType planeType, Integer flightCost, LocalDateTime onAir) {
-        this.id = id;
-        this.planeType = planeType;
-        this.flightCost = flightCost;
-        this.onAir = onAir;
-    }
 
     public String getId() {
         return id;
