@@ -23,7 +23,6 @@ public class ClubService {
         // clubs.add(new Club(BigDecimal.valueOf(6310),"Dél-Pesti-Klub", null,null,2));
     }
 
-
     public List<Club> getClubs() {
         return clubRepo.findAll();
     }
