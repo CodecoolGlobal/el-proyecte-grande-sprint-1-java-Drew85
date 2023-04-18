@@ -31,7 +31,7 @@ public class Club {
     public Club(BigDecimal price, String name, Set<Client> users, Set<Plane> planes, Long id) {
         this.price = price;
         this.name = name;
-        this.clients = clients;
+        this.clients = users;
         this.planes = planes;
         this.id = id;
     }

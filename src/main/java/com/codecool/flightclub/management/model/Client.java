@@ -7,8 +7,6 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public class Client {
     private String name;
     @Id
@@ -16,8 +14,6 @@ public class Client {
     private Integer id;
     @ManyToOne
     private Club club;
-
     private String email;
     private String password;
-
 }
