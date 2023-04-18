@@ -1,26 +1,50 @@
 package com.codecool.flightclub.management.model;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
 public class Client {
+    private String name;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
     @ManyToOne
     private Club club;
 
-    private String password;
-    private String email;
+    public Client(String name, int id, Club club) {
+        this.name = name;
+        this.id = id;
+        this.club = club;
+    }
 
-    private String userName;
+    public Client() {
+    }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setClub(Club club) {
+        this.club = club;
+    }
+
+    public Club getClub() {
+        return club;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
