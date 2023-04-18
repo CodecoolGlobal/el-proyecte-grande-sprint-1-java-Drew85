@@ -25,15 +25,6 @@ function App() {
         <div className="App">
             <ButtonAppBar />
             <DropdownList/>
-            <ul>
-                {!users ? "Loading..." : users.map((user) =>
-                    <li key={user.id}>
-                        {user.name}
-                        {" "}
-                        {user.id}
-                    </li>
-                )}
-            </ul>
             <img style={{width:"80%", height:"80%"}} src={fahegy}/>
         </div>
 
