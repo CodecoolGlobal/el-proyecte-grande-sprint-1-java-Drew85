@@ -3,6 +3,9 @@ package com.codecool.flightclub.management.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Data;
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,6 +15,8 @@ import java.util.Set;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Club {
 
     @Id
@@ -19,20 +24,16 @@ public class Club {
     private BigDecimal price;
     private String name;
     @OneToMany
-    private Set<Client> users;
+    private Set<Client> clients;
     @OneToMany
     private Set<Plane> planes;
 
     public Club(BigDecimal price, String name, Set<Client> users, Set<Plane> planes, Long id) {
         this.price = price;
         this.name = name;
-        this.users = users;
+        this.clients = clients;
         this.planes = planes;
         this.id = id;
-    }
-
-    public Club() {
-
     }
 
     public BigDecimal getPrice() {
@@ -43,8 +44,8 @@ public class Club {
         return name;
     }
 
-    public Set<Client> getUsers() {
-        return users;
+    public Set<Client> getClients() {
+        return clients;
     }
 
     public Set<Plane> getPlanes() {
@@ -58,4 +59,5 @@ public class Club {
     public void setName(String name) {
         this.name = name;
     }
+
 }

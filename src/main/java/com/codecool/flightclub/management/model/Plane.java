@@ -1,8 +1,12 @@
 package com.codecool.flightclub.management.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,11 +19,10 @@ import jakarta.persistence.Id;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-
 @Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Plane {
     @Id
     private String id;

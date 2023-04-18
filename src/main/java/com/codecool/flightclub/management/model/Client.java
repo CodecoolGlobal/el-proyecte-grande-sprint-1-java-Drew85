@@ -5,9 +5,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Client {
     private String name;
     @Id
@@ -21,8 +24,6 @@ public class Client {
         this.club = club;
     }
 
-    public Client() {
-    }
 
     public String getName() {
         return name;
