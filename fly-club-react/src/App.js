@@ -57,7 +57,7 @@ function App() {
                     <table key={plane.id}>
                         <td>
                             <tr>
-                                {plane.planeType}
+                                {plane.planeType.name}
                                 {" | -Registration num: "}
                                 {plane.id}
                                 {" | -Cost: "}

@@ -17,7 +17,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Plane {
     @Id
-    private String id;
+    @GeneratedValue
+    private Long id;
 //    @Enumerated(EnumType.STRING)
     @ManyToOne
     private PlaneType planeType;
@@ -26,11 +27,11 @@ public class Plane {
 
 
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
