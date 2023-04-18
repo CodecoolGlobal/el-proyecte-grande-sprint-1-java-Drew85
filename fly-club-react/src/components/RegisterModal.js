@@ -25,7 +25,7 @@ export default function RegisterModal({handleRegisterOpen, handleRegisterClose, 
         const [email, setEmail] = useState('')
 
         const data = {
-            userName: userName,
+            name: userName,
             password: password,
             email: email
         }

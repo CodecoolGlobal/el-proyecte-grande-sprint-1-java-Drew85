@@ -30,9 +30,7 @@ public class UserService {
         return null;
     }
 
-    public void AddNewUser(String name) {
-        clients.add(new Client(name, clients.size() == 0 ? 0 : clients.get(clients.size() - 1).getId() + 1, null));
-    }
+
 
     public void editUser(int id, String newName) {
         getUser(id).setName(newName);
