@@ -18,6 +18,13 @@ public class Client {
     @ManyToOne
     private Club club;
 
+    public Client(String name, int id, Club club) {
+        this.name = name;
+        this.id = id;
+        this.club = club;
+    }
+
+
     public String getName() {
         return name;
     }

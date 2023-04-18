@@ -6,6 +6,9 @@ import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Data;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.Set;
@@ -17,7 +20,7 @@ import java.util.Set;
 public class Club {
 
     @Id
-    private Integer id;
+    private Long id;
     private BigDecimal price;
     private String name;
     @OneToMany
@@ -25,12 +28,36 @@ public class Club {
     @OneToMany
     private Set<Plane> planes;
 
-    public Club(BigDecimal price, String name, Set<Client> clients, Set<Plane> planes, Integer id) {
+    public Club(BigDecimal price, String name, Set<Client> users, Set<Plane> planes, Long id) {
         this.price = price;
         this.name = name;
         this.clients = clients;
         this.planes = planes;
         this.id = id;
     }
-    
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Set<Client> getClients() {
+        return clients;
+    }
+
+    public Set<Plane> getPlanes() {
+        return planes;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }

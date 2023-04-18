@@ -2,12 +2,14 @@ import './App.css';
 import ButtonAppBar from "./components/Navbar";
 import DropdownList from "./components/Dropdown";
 import fahegy from "./static/Fahegy3.jpg";
-
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import DropdownPlaneTypes from "./components/DropdownPlaneTypes";
+import "./index.css";
 
 function App() {
     const [users, setUsers] = useState(undefined);
+    const [planes, setPlanes] = useState(undefined);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -21,18 +23,8 @@ function App() {
     return (
 
         <div className="App">
-
-            <ButtonAppBar/>
+            <ButtonAppBar />
             <DropdownList/>
-            <ul>
-                {!users ? "Loading..." : users.map((user) =>
-                    <li key={user.id}>
-                        {user.name}
-                        {" "}
-                        {user.id}
-                    </li>
-                )}
-            </ul>
             <img style={{width:"80%", height:"80%"}} src={fahegy}/>
         </div>
 

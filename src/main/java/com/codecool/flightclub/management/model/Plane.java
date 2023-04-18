@@ -5,9 +5,19 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
+import jakarta.persistence.Column;
+import lombok.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -16,6 +26,8 @@ import java.time.LocalDate;
 public class Plane {
     @Id
     private String id;
+//    @Enumerated(EnumType.STRING)
+    @ManyToOne
     private PlaneType planeType;
     private BigDecimal flightCost;
     private LocalDate onAir;
