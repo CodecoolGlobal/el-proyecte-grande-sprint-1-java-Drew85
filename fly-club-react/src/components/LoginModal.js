@@ -4,6 +4,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import {Grid, TextField} from "@mui/material";
+import axios from "axios";
+import {useState} from "react";
 
 const style = {
     position: 'absolute',
@@ -18,7 +20,29 @@ const style = {
 };
 
 export default function LoginModal({handleOpen, handleClose, open}) {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
+    const data = {
+        email: email,
+        password: password,
+    }
+    const config ={
+        headers:{
+            'Content-type': 'application/json'
+        }
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        axios.post('/login', data, config)
+            .then((response) => {
+                console.log(response.data)
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+    }
 
     return (
         <div>
@@ -41,6 +65,9 @@ export default function LoginModal({handleOpen, handleClose, open}) {
                                 label="Email"
                                 autoFocus
                                 variant={"filled"}
+                                onChange={(e) => {
+                                    setEmail(e.target.value)
+                                }}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -52,6 +79,9 @@ export default function LoginModal({handleOpen, handleClose, open}) {
                                 label="Password"
                                 autoFocus
                                 variant={"filled"}
+                                onChange={(e) => {
+                                    setPassword(e.target.value)
+                                }}
                             />
                         </Grid>
                     </Grid>
@@ -61,6 +91,7 @@ export default function LoginModal({handleOpen, handleClose, open}) {
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
                         color="secondary"
+                        onClick={handleSubmit}
                     >
                         Log In
                     </Button>
