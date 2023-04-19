@@ -46,4 +46,5 @@ public class ClientController {
         userService.addClubToUser(club, user);
         return ResponseEntity.ok().build();
     }
+
 }

@@ -13,7 +13,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
@@ -28,25 +27,20 @@ public class JwtTokenVerify extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-            String token = request.getHeader("Authorization");
-            if (token == null || !token.startsWith("Bearer")) {
-// this is not a bearer token based authorization, so we let other filters
-// perform the authentication, if they can:
-                filterChain.doFilter(request, response);
-                return;
-            }
-            String expectedHeaderValue = "Bearer " + parseToken("");
-            if (!expectedHeaderValue.equals(token)) {
-                throw new BadCredentialsException("invalid token found in Authorization header");
-            }
-
-            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                    "UserRegistrationApi", "", List.of(new SimpleGrantedAuthority("ROLE_USER_REGISTRATION"))
-            );
-            SecurityContextHolder.getContext().setAuthentication(authToken);
-
+        String token = request.getHeader("Authorization");
+        if (token == null || !token.startsWith("Bearer")) {
+            // this is not a bearer token based authorization, so we let other filters
+            // perform the authentication, if they can:
             filterChain.doFilter(request, response);
+            return;
         }
+        String tokenValue = token.replace("Bearer ", "");
+        Authentication authenticatedToken = parseToken(tokenValue);
+        SecurityContextHolder.getContext().setAuthentication(authenticatedToken);
+
+        filterChain.doFilter(request, response);
+    }
+
     public Authentication parseToken(String token) {
         try {
             Claims body = Jwts.parser()
@@ -62,11 +56,10 @@ public class JwtTokenVerify extends OncePerRequestFilter {
                     .collect(Collectors.toSet());
 
             UsernamePasswordAuthenticationToken unptoken = new UsernamePasswordAuthenticationToken(username, null, simpleGrantedAuthorities);
-            SecurityContextHolder.getContext().setAuthentication(unptoken);
             return unptoken;
 
         } catch (JwtException | ClassCastException e) {
             return null;
         }
     }
-    }
+}
