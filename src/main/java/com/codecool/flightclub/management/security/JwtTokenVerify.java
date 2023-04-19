@@ -19,9 +19,13 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.security.Key;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class JwtTokenVerify extends OncePerRequestFilter {
     private final Key secretKey = Keys.hmacShaKeyFor("zdtlD3JK56m6wTTgsNFhqzjqPzdtlD3JK56m6wTTgsNFhqzjqP".getBytes());
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
             String token = request.getHeader("Authorization");
@@ -50,12 +54,16 @@ public class JwtTokenVerify extends OncePerRequestFilter {
                     .parseClaimsJws(token)
                     .getBody();
 
-//            User u = new User();
-//            u.setUsername(body.getSubject());
-//            u.setId(Long.parseLong((String) body.get("userId")));
-//            u.setRole((String) body.get("role"));
+            String username = body.getSubject();
+            var authorities = (List<Map<String, String>>) body.get("authorities");
 
-            return null;
+            Set<SimpleGrantedAuthority> simpleGrantedAuthorities = authorities.stream()
+                    .map(m -> new SimpleGrantedAuthority(m.get("authority")))
+                    .collect(Collectors.toSet());
+
+            UsernamePasswordAuthenticationToken unptoken = new UsernamePasswordAuthenticationToken(username, null, simpleGrantedAuthorities);
+            SecurityContextHolder.getContext().setAuthentication(unptoken);
+            return unptoken;
 
         } catch (JwtException | ClassCastException e) {
             return null;
