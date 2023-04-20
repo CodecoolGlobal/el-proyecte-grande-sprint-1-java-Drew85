@@ -15,10 +15,10 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  const getMe = useCallback((token) => {
+  const getMe = useCallback((token, username) => {
     fetch("/login", {
       headers: {
-        authorization: `bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((r) => r.json())
@@ -38,14 +38,18 @@ const UserProvider = ({ children }) => {
       },
       body: JSON.stringify(creds),
     })
-        .then((res) => res.json())
+        .then((res) => {
+          console.log(res.headers.get('username'));
+          return res.json();
+        })
         .then((res) => {
           const { token } = res;
+          console.log(token)
           if (token) {
             setToken(token);
             getMe(token);
           }
-        });
+        }).catch(error => console.error("Login failed ", error));
   };
 
   useEffect(() => {
