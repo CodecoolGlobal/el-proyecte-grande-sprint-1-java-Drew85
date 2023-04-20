@@ -1,10 +1,9 @@
 package com.codecool.flightclub.management.repository;
 
-import com.codecool.flightclub.management.model.Client;
+import com.codecool.flightclub.management.model.RoleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<Client, Integer> {
-    Client findByName(String s);
+public interface RoleRepository extends JpaRepository<RoleEntity, Long> {
 }

@@ -4,6 +4,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import {Grid, TextField} from "@mui/material";
+import {useContext, useState} from "react";
+import UserProvider, {useUser} from "./UserProvider";
+
 
 const style = {
     position: 'absolute',
@@ -18,7 +21,24 @@ const style = {
 };
 
 export default function LoginModal({handleOpen, handleClose, open}) {
+    const [userName, setUserName] = useState('')
+    const [password, setPassword] = useState('')
+    const {login} = useUser()
 
+
+    const data = {
+        name: userName,
+        password: password,
+    }
+    const config ={
+        headers:{
+            'Content-type': 'application/json'
+        }
+    }
+
+    const handleSubmit = (event) => {
+        login(data)
+    }
 
     return (
         <div>
@@ -33,14 +53,16 @@ export default function LoginModal({handleOpen, handleClose, open}) {
                     <Grid container spacing={1}>
                         <Grid item xs={12}>
                             <TextField
-                                autoComplete="email"
-                                name="email"
+                                name="user-name"
                                 required
                                 fullWidth
-                                id="email"
-                                label="Email"
+                                id="user-name"
+                                label="User Name"
+                                variant="filled"
                                 autoFocus
-                                variant={"filled"}
+                                onChange={(e) => {
+                                    setUserName(e.target.value)
+                                }}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -52,6 +74,9 @@ export default function LoginModal({handleOpen, handleClose, open}) {
                                 label="Password"
                                 autoFocus
                                 variant={"filled"}
+                                onChange={(e) => {
+                                    setPassword(e.target.value)
+                                }}
                             />
                         </Grid>
                     </Grid>
@@ -61,6 +86,8 @@ export default function LoginModal({handleOpen, handleClose, open}) {
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
                         color="secondary"
+                        onClick={handleSubmit}
+
                     >
                         Log In
                     </Button>
