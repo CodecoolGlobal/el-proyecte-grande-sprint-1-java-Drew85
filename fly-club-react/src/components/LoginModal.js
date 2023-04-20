@@ -4,8 +4,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import {Grid, TextField} from "@mui/material";
-import axios from "axios";
-import {useState} from "react";
+import {useContext, useState} from "react";
+import UserProvider, {useUser} from "./UserProvider";
+
 
 const style = {
     position: 'absolute',
@@ -20,11 +21,13 @@ const style = {
 };
 
 export default function LoginModal({handleOpen, handleClose, open}) {
-    const [email, setEmail] = useState('')
+    const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
+    const {login} = useUser()
+
 
     const data = {
-        email: email,
+        name: userName,
         password: password,
     }
     const config ={
@@ -34,14 +37,7 @@ export default function LoginModal({handleOpen, handleClose, open}) {
     }
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-        axios.post('/login', data, config)
-            .then((response) => {
-                console.log(response.data)
-            })
-            .catch((error) => {
-                console.error(error)
-            })
+        login(data)
     }
 
     return (
@@ -57,16 +53,15 @@ export default function LoginModal({handleOpen, handleClose, open}) {
                     <Grid container spacing={1}>
                         <Grid item xs={12}>
                             <TextField
-                                autoComplete="email"
-                                name="email"
+                                name="user-name"
                                 required
                                 fullWidth
-                                id="email"
-                                label="Email"
+                                id="user-name"
+                                label="User Name"
+                                variant="filled"
                                 autoFocus
-                                variant={"filled"}
                                 onChange={(e) => {
-                                    setEmail(e.target.value)
+                                    setUserName(e.target.value)
                                 }}
                             />
                         </Grid>
@@ -92,6 +87,7 @@ export default function LoginModal({handleOpen, handleClose, open}) {
                         sx={{ mt: 3, mb: 2 }}
                         color="secondary"
                         onClick={handleSubmit}
+
                     >
                         Log In
                     </Button>
