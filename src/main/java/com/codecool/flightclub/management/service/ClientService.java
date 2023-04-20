@@ -11,8 +11,6 @@ import java.util.List;
 @Service
 public class ClientService {
 
-
-
     private ClientRepository clientRepository;
     @Autowired
     public ClientService(ClientRepository clientRepository) {
@@ -20,18 +18,17 @@ public class ClientService {
     }
 
 
-
-
-
-
     public List<Client> getUsers() {
         return clientRepository.findAll();
     }
 
     public Client getUser(Long id) {
-         return clientRepository.findUserById(id);
+         return clientRepository.findClientById(id);
     }
 
+    public Client getUser(String name) {
+        return clientRepository.findClientByName(name);
+    }
 
     public void addClubToUser(Club club, Client user){
         user.setClub(club);

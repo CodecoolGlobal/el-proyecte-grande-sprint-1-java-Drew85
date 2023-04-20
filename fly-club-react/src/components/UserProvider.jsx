@@ -15,7 +15,7 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  const getMe = useCallback((token, username) => {
+  const getMe = useCallback((token) => {
     fetch("/login", {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -39,11 +39,7 @@ const UserProvider = ({ children }) => {
       body: JSON.stringify(creds),
     })
         .then((res) => {
-          console.log(res.headers.get('username'));
-          return res.json();
-        })
-        .then((res) => {
-          const { token } = res;
+          const token = res.headers.get('authorization').split(" ")[1];
           console.log(token)
           if (token) {
             setToken(token);
