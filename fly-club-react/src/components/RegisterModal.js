@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import {Grid, TextField} from "@mui/material";
 import axios from "axios";
 import {useState} from "react";
+import {Link} from "@mui/joy";
 const style = {
     position: 'absolute',
     top: '50%',
@@ -50,7 +50,9 @@ export default function RegisterModal({handleRegisterOpen, handleRegisterClose, 
 
         return (
             <div>
-                <Button sx={{color:"inherit"}}>Join Club</Button>
+                <Link href="/club" underline="hover">
+                    JOIN CLUB
+                </Link>
                 <Button sx={{color: "inherit"}} onClick={handleRegisterOpen}>Register</Button>
 
                 <Modal

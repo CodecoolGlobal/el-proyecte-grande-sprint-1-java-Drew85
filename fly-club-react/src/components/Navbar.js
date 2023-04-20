@@ -35,6 +35,7 @@ export default function ButtonAppBar() {
                     </Typography>
                     <RegisterModal registerOpen={registerOpen} handleRegisterOpen={handleRegisterOpen} handleRegisterClose={handleRegisterClose} />
                     <LoginModal open={open} handleOpen={handleOpen} handleClose={handleClose}/>
+
                 </Toolbar>
             </AppBar>
         </Box>
