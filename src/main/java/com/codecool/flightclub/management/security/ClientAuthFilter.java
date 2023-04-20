@@ -36,6 +36,7 @@ public class ClientAuthFilter extends UsernamePasswordAuthenticationFilter {
 
         UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(
                 username, password);
+        System.out.println(username + password);
 
         return this.getAuthenticationManager().authenticate(authRequest);
     }
@@ -50,6 +51,7 @@ public class ClientAuthFilter extends UsernamePasswordAuthenticationFilter {
                 .setExpiration(expiration)
                 .signWith(JwtTokenVerifierFilter.secretKey)
                 .compact();
+        System.out.println(successToken);
         response.addHeader("Authorization", "Bearer " + successToken);
     }
 }
