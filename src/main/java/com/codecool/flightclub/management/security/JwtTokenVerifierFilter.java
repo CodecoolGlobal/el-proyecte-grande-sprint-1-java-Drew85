@@ -16,6 +16,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.security.Key;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -36,7 +37,6 @@ public class JwtTokenVerifierFilter extends OncePerRequestFilter {
         String tokenValue = token.replace("Bearer ", "");
         Authentication authenticatedToken = parseToken(tokenValue);
         SecurityContextHolder.getContext().setAuthentication(authenticatedToken);
-
         filterChain.doFilter(request, response);
     }
 
@@ -49,10 +49,13 @@ public class JwtTokenVerifierFilter extends OncePerRequestFilter {
 
             String username = body.getSubject();
             var authorities = (List<Map<String, String>>) body.get("authorities");
+            Set<SimpleGrantedAuthority> simpleGrantedAuthorities = Collections.emptySet();
+            if (null != authorities){
+                simpleGrantedAuthorities = authorities.stream()
+                        .map(m -> new SimpleGrantedAuthority(m.get("authority")))
+                        .collect(Collectors.toSet());
+            }
 
-            Set<SimpleGrantedAuthority> simpleGrantedAuthorities = authorities.stream()
-                    .map(m -> new SimpleGrantedAuthority(m.get("authority")))
-                    .collect(Collectors.toSet());
 
             UsernamePasswordAuthenticationToken unptoken = new UsernamePasswordAuthenticationToken(username, null, simpleGrantedAuthorities);
             return unptoken;

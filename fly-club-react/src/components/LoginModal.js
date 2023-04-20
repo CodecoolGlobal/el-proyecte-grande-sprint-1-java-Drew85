@@ -27,7 +27,7 @@ export default function LoginModal({handleOpen, handleClose, open}) {
 
 
     const data = {
-        name: userName,
+        username: userName,
         password: password,
     }
     const config ={
@@ -36,7 +36,8 @@ export default function LoginModal({handleOpen, handleClose, open}) {
         }
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (e) => {
+        e.preventDefault()
         login(data)
     }
 
@@ -87,7 +88,6 @@ export default function LoginModal({handleOpen, handleClose, open}) {
                         sx={{ mt: 3, mb: 2 }}
                         color="secondary"
                         onClick={handleSubmit}
-
                     >
                         Log In
                     </Button>

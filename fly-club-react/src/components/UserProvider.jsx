@@ -18,7 +18,7 @@ const UserProvider = ({ children }) => {
   const getMe = useCallback((token) => {
     fetch("/login", {
       headers: {
-        authorization: `bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((r) => r.json())
@@ -38,14 +38,14 @@ const UserProvider = ({ children }) => {
       },
       body: JSON.stringify(creds),
     })
-        .then((res) => res.json())
         .then((res) => {
-          const { token } = res;
+          const token = res.headers.get('authorization').split(" ")[1];
+          console.log(token)
           if (token) {
             setToken(token);
             getMe(token);
           }
-        });
+        }).catch(error => console.error("Login failed ", error));
   };
 
   useEffect(() => {
