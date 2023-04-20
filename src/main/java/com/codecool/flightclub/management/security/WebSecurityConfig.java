@@ -50,7 +50,7 @@ public class WebSecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
                 .requestMatchers("/")
                 .permitAll()
-                .requestMatchers(HttpMethod.POST,"/user")
+                .requestMatchers(HttpMethod.POST,"/user", "/login")
                 .permitAll()
                 .requestMatchers("/admin/**")
                 .hasRole("ADMIN")
