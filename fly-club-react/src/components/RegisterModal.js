@@ -106,7 +106,6 @@ export default function RegisterModal({handleRegisterOpen, handleRegisterClose, 
                                 />
                             </Grid>
                         </Grid>
-
                         <Button
                             type="submit"
                             fullWidth
@@ -114,8 +113,6 @@ export default function RegisterModal({handleRegisterOpen, handleRegisterClose, 
                             sx={{mt: 3, mb: 2}}
                             color="secondary"
                             onClick={handleSubmit}
-
-
                         >
                             Register
                         </Button>
