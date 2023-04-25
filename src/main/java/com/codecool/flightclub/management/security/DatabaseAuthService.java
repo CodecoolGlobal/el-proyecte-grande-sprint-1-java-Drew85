@@ -1,4 +1,5 @@
 package com.codecool.flightclub.management.security;
+
 import com.codecool.flightclub.management.model.Client;
 import com.codecool.flightclub.management.model.RoleEntity;
 import com.codecool.flightclub.management.repository.UserRepository;
@@ -11,7 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.security.core.GrantedAuthority;
-
 
 import java.util.ArrayList;
 import java.util.Collection;
