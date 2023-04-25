@@ -12,6 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 public class Client {
+    @Column(unique = true)
     private String name;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
