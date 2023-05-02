@@ -45,7 +45,7 @@ public class WebSecurityConfig {
         http.csrf()
                 .disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-                .requestMatchers("/")
+                .requestMatchers("/", "/index.html", "/main.*.js","/main.*.css", "/manifest.json", "/favicon.ico", "/logo192.png")
                 .permitAll()
                 .requestMatchers(HttpMethod.POST,"/user", "/login")
                 .permitAll()
