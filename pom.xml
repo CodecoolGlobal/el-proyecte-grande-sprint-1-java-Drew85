@@ -81,6 +81,40 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>1.12.1</version>
+				<executions>
+					<execution>
+						<!-- optional: you don't really need execution ids, but it looks nice in your build log. -->
+						<id>install node and npm</id>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+						<!-- optional: default phase is "generate-resources" -->
+						<phase>generate-resources</phase>
+					</execution>
+					<execution>
+						<id>npm install</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+
+						<!-- optional: default phase is "generate-resources" -->
+						<phase>generate-resources</phase>
+
+					</execution>
+				</executions>
+				<configuration>
+					<nodeVersion>v16.18.0</nodeVersion>
+
+					<!-- optional: with node version greater than 4.0.0 will use npm provided by node distribution -->
+					<npmVersion>9.6.5</npmVersion>
+					<workingDirectory>flight-club-react</workingDirectory>
+
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
