@@ -35,8 +35,16 @@ Please install all necessary frameworks and external programs to be able to run 
 4. Open a browser of your choice and navigate to localhost:8080
 5. You may use SwaggerUI or Postman to check out the endpoints such as /club or /user
 6. Use npm install then npm start to start the NodeJS server to be able to see the frontend part of the app
-7. Go to localhost:5000 with a browser of your choice
+7. Go to localhost:3000 with a browser of your choice
 8. Now you can see the application in it's full glory, enjoy! :)
+
+Run with command lines in shell:
+```shell
+mvn clean install
+mvn spring-boot:run
+npm install
+npm run start
+```
 
 Please always bear in mind that the application is in early phase and may work unintendedly and you may experience crashes or visual bugs as well as unresponsiveness.
 **Do not** use actual personal data for login process. We do not take any responsibility for accidental data leakage as the program is still in development.
